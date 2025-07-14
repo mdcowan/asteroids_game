@@ -4,7 +4,7 @@
 import pygame
 # import everything from the module
 # constants.py into the current file
-from constants import SCREEN_WIDTH, SCREEN_HEIGHT, ASTEROID_MIN_RADIUS, ASTEROID_KINDS, ASTEROID_SPAWN_RATE, ASTEROID_MAX_RADIUS, PLAYER_RADIUS
+from constants import *
 from player import Player
 
 def main():
@@ -14,16 +14,19 @@ def main():
     # Setting name for the game window
     pygame.display.set_caption('Asteroids')
 
-    # creating a bool value which checks 
-    # if the game is running
-    running = True
-
     print("Starting Asteroids!")
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
     # create an object to help track time
     clock = pygame.time.Clock()
     dt = 0
+
+    # create game groups
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+
+    # set the group containers
+    Player.containers = (updatable, drawable)
 
     # create the player
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
@@ -41,10 +44,11 @@ def main():
         screen.fill("black")
 
         # update the player position
-        player.update(dt)
+        updatable.update(dt)
 
         #render the player
-        player.draw(screen)
+        for thing in drawable:
+            thing.draw(screen)
         
         # refresh the screen
         pygame.display.flip()
