@@ -4,7 +4,8 @@
 import pygame
 # import everything from the module
 # constants.py into the current file
-from constants import SCREEN_WIDTH, SCREEN_HEIGHT, ASTEROID_MIN_RADIUS, ASTEROID_KINDS, ASTEROID_SPAWN_RATE, ASTEROID_MAX_RADIUS
+from constants import SCREEN_WIDTH, SCREEN_HEIGHT, ASTEROID_MIN_RADIUS, ASTEROID_KINDS, ASTEROID_SPAWN_RATE, ASTEROID_MAX_RADIUS, PLAYER_RADIUS
+from player import Player
 
 def main():
     # initializing imported module
@@ -24,6 +25,9 @@ def main():
     clock = pygame.time.Clock()
     dt = 0
 
+    # create the player
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+
     # Game loop
     # keep game running till running is true
     while True:  
@@ -35,6 +39,9 @@ def main():
         
         # fill the screen with a solid "black" color.
         screen.fill("black")
+
+        #render the player
+        player.draw(screen)
         
         # refresh the screen
         pygame.display.flip()
@@ -43,7 +50,7 @@ def main():
         # this returns the amount of time that has passed since
         # the last time it was called: the delta time
         # convert the delta time from milliseconds to seconds and save the result
-        dt = clock.tick(60)/1000
+        dt = clock.tick(60) / 1000
 
 
 
