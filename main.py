@@ -40,6 +40,9 @@ def main():
         # fill the screen with a solid "black" color.
         screen.fill("black")
 
+        # update the player position
+        player.update(dt)
+
         #render the player
         player.draw(screen)
         
