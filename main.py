@@ -20,6 +20,10 @@ def main():
     print("Starting Asteroids!")
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+    # create an object to help track time
+    clock = pygame.time.Clock()
+    dt = 0
+
     # Game loop
     # keep game running till running is true
     while True:  
@@ -34,6 +38,12 @@ def main():
         
         # refresh the screen
         pygame.display.flip()
+
+        # pause the game loop until 1/60th of a second has passed using .tick()
+        # this returns the amount of time that has passed since
+        # the last time it was called: the delta time
+        # convert the delta time from milliseconds to seconds and save the result
+        dt = clock.tick(60)/1000
 
 
 
