@@ -1,1 +1,1 @@
-This is my second Boot.dev project! It is a simple video game, based on the classic Asteroids game.
+This is my second Boot.dev project! It is a simple video game, based on the classic Asteroids game using [Pygame](https://www.pygame.org) modules.
