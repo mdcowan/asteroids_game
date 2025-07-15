@@ -1,3 +1,4 @@
+import sys
 # this allows us to use code from
 # the open-source pygame library
 # throughout this file
@@ -52,7 +53,13 @@ def main():
         # update the player position
         updatable.update(dt)
 
-        #render the player
+        # check for player collisions with the asteroids
+        for asteroid in asteroids:
+            if player.check_for_collision(asteroid):
+                sys.exit("Game over!")
+            
+
+        #render everything on the screeen
         for thing in drawable:
             thing.draw(screen)
         
