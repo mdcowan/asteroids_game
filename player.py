@@ -8,6 +8,7 @@ class Player(CircleShape):
     def __init__(self, x, y):
         super().__init__(x, y, PLAYER_RADIUS)
         self.rotation = 0
+        self.timer = 0
 
     # in the player class
     def triangle(self):
@@ -25,6 +26,9 @@ class Player(CircleShape):
         self.rotation += PLAYER_TURN_SPEED * dt
 
     def update(self, dt):
+        # Decrease the timer
+        self.timer -= dt
+        # when a key is pressed, set the keys value to determine what was pressed
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_a]:
@@ -36,7 +40,6 @@ class Player(CircleShape):
         if keys[pygame.K_s]:
             self.move(dt * -1)
         if keys[pygame.K_SPACE]:
-            print("shooting!")
             self.shoot()
     
     def move(self, dt):
@@ -44,12 +47,15 @@ class Player(CircleShape):
         self.position += forward * PLAYER_SPEED * dt
 
     def shoot(self):
-        # Create the shot
-        shot = Shot(self.position.x, self.position.y)
-        # Set the shot's velocity:
-        ## Start with a pygame.Vector2 of (0, 1)
-        ## .rotate() it in the direction the player is facing
-        ## Scale it up (multiply by PLAYER_SHOOT_SPEED) to make it move faster
-        shot.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_SHOOT_SPEED
+        if self.timer <= 0:
+            # set the shot cooldown
+            self.timer = PLAYER_SHOOT_COOLDOWN 
+            # Create the shot
+            shot = Shot(self.position.x, self.position.y)
+            # Set the shot's velocity:
+            ## Start with a pygame.Vector2 of (0, 1)
+            ## .rotate() it in the direction the player is facing
+            ## Scale it up (multiply by PLAYER_SHOOT_SPEED) to make it move faster
+            shot.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_SHOOT_SPEED
 
         
