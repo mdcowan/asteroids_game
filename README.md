@@ -1,7 +1,7 @@
 This is my second Boot.dev project! It is a simple video game, based on the classic Asteroids game using [Pygame](https://www.pygame.org) modules.
 
 **Prerequisites:**
-- Python 3.10+ installed (see the bookbot project for help if you don't already have it)
+- Python 3.10+ installed
 - uv project and package manager (https://github.com/astral-sh/uv)
 - Access to a unix-like shell (e.g. zsh or bash)
 - If you are on WSL, you will probably also need to install VcXsrv (https://vcxsrv.com/)
