@@ -11,8 +11,8 @@ This is my second Boot.dev project! It is a simple video game, based on the clas
 2. Using the shell in the folder location, enter `uv run main.py`
 
 **Controls**
-W - Up
-A - Left
-S - Down
-D - Right
-Space - Shoot
+- W - Up
+- A - Left
+- S - Down
+- D - Right
+- Space - Shoot
