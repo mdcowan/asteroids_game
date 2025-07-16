@@ -9,6 +9,7 @@ from constants import *
 from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
+from shot import Shot
 
 def main():
     # initializing imported module
@@ -28,11 +29,13 @@ def main():
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
+    shots = pygame.sprite.Group()
 
     # set the group containers
     Player.containers = (updatable, drawable)
     Asteroid.containers = (asteroids, updatable, drawable)
     AsteroidField.containers = (updatable)
+    Shot.containers = (updatable, drawable)
 
     # create the player
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
@@ -50,7 +53,7 @@ def main():
         # fill the screen with a solid "black" color.
         screen.fill("black")
 
-        # update the player position
+        # update the shape positions
         updatable.update(dt)
 
         # check for player collisions with the asteroids
